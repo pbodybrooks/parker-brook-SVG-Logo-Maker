@@ -21,7 +21,7 @@ const questions = [
     {
         type: "input",
         name: "text",
-        message: "Please enter up to three (3) alphanumeric characters to be displayed in your logo:",
+        message: "Please enter up to three (3) alphanumeric characters or symbols to be displayed in your logo:",
         validate: validateUserInput
     },
     {
