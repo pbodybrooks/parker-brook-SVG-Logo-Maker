@@ -16,7 +16,7 @@ This application can build custom SVG logos based on user-specified inputs, allo
 * [Questions](#questions)
 
 ## Video Demonstration
-[Link to video demonstration](https://drive.google.com/file/d/11A9l32Ha0ymNBk8zuMmT9PdSglLx7T04/view)
+[Link to video demonstration](https://drive.google.com/file/d/1qDZRV_5m6L-tt76b9alyd1-LeSFDq8ax/view)
 
 ## Screenshot
 ![Screenshot of app.](./lib/more.../assets/logo.svg)
