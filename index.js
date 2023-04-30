@@ -1,7 +1,8 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
+const {Circle, Square, Triangle} = require("./lib/shapes");
 
-const shapes = ["circle", "square", "triangle"];
+const shapeSelection = ["Circle", "Square", "Triangle"];
 
 function validateUserInput(input){
     if (input != "") {
@@ -29,7 +30,7 @@ const questions = [
         type: "list",
         name: "shape",
         message: "Please select a logo shape:",
-        choices: shapes,
+        choices: shapeSelection,
         validate: validateUserInput
     },
     {
@@ -40,8 +41,20 @@ const questions = [
     }
 ];
 
-function writeToSVG(data) {
+function writeToFile(data) {
     const fileName = "./examples/logo.svg"
+    let svgCode = "";
+    svgCode = "<svg version='1.1' xmlns='http://www.w3.org/2000/svg' width='300' height='200'>";
+
+    let userShape;
+    
+    if (data.shape === "Circle") {
+        userShape = new Circle();
+    } else if (data.shape === "Square") {
+        userShape = new Square();
+    } else if (data.shape === "Triangle") {
+        userShape = new Triangle();
+    }
 
     fs.writeFile(fileName, generateSVG(data), function(err) {
         err ? console.log(err) : console.log("Woot! " + fileName + " Successfully Generated!")
