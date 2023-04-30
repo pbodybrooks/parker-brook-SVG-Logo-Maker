@@ -15,6 +15,12 @@ This application can build custom SVG logos based on user-specified inputs, allo
 * [Tests](#tests)
 * [Questions](#questions)
 
+## Video Demonstration
+[Link to video demonstration](https://drive.google.com/file/d/11A9l32Ha0ymNBk8zuMmT9PdSglLx7T04/view)
+
+## Screenshot
+![Screenshot of app.](./lib/more.../assets/logo.svg)
+
 ## Installation 
 After cloning the repository to your local machine, open a terminal and type npm i to install inquirer and jest.
 
