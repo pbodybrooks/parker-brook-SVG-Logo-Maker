@@ -44,10 +44,13 @@ const questions = [
 function writeToFile(data) {
     const fileName = "./examples/logo.svg"
     let svgCode = "";
-    svgCode = "<svg version='1.1' xmlns='http://www.w3.org/2000/svg' width='300' height='200'>";
+    svgCode = `<svg version='1.1' xmlns='http://www.w3.org/2000/svg' width='300' height='200'>`;
+
+    userText = data.text;
+    userShapeColor = data.shapeColor;
+    userTextColor = data.textColor;
 
     let userShape;
-
     if (data.shape === "Circle") {
         userShape = new Circle();
     } else if (data.shape === "Square") {
@@ -55,6 +58,13 @@ function writeToFile(data) {
     } else if (data.shape === "Triangle") {
         userShape = new Triangle();
     }
+
+    userShape.setColor(userShapeColor);
+
+    svgCode += `${userShape}`;
+    svgCode += `<text x='150' y='130' text-anchor='middle' font-size='40' fill='${userTextColor}'>${userText}</text>`;
+    svgCode += "</svg>";
+
 
     fs.writeFile(fileName, svgCode, function(err) {
         err ? console.log(err) : console.log("Woot! SVG was successfully generated!")
