@@ -1,9 +1,12 @@
+// include fs, inquirer, and shape classes to allow file writing, prompting of questions, and shape rendering, respectively
 const fs = require("fs");
 const inquirer = require("inquirer");
-const {Circle, Square, Triangle} = require("./lib/shapes");
+const {Circle, Square, upTriangle, downTriangle} = require("./lib/shapes");
 
-const shapeSelection = ["Circle", "Square", "Triangle"];
+// possible user inputs for shape selection
+const shapeSelection = ["Circle", "Square", "Upwards Triangle", "Downwards Triangle"];
 
+// check to ensure field is not left blank
 function validateUserInput(input){
     if (input != "") {
         return true;
@@ -13,6 +16,7 @@ function validateUserInput(input){
     }
 }
 
+// prompts user for text, text color, shape, and shape color inputs
 const questions = [
     {
         type: "input",
@@ -41,35 +45,41 @@ const questions = [
     }
 ];
 
+// writes the SVG code to a file after deconstructing the user's input
 function writeToFile(data) {
     const fileName = "./examples/logo.svg"
     let svgCode = "";
+    // base SVG code
     svgCode = `<svg version='1.1' width='300' height='200' xmlns='http://www.w3.org/2000/svg'>`;
 
+    // deconstruct user input
     userText = data.text;
     userShapeColor = data.shapeColor;
     userTextColor = data.textColor;
 
+    // create shape object based on user input
     let userShape;
     if (data.shape === "Circle") {
         userShape = new Circle();
     } else if (data.shape === "Square") {
         userShape = new Square();
-    } else if (data.shape === "Triangle") {
-        userShape = new Triangle();
+    } else if (data.shape === "Upwards Triangle") {
+        userShape = new upTriangle();
+    } else if (data.shape === "Downwards Triangle") {
+        userShape = new downTriangle();
     }
     
+    // set shape color and render shape
     userShape.setColor(userShapeColor);
+    svgCode += userShape.render();
 
-    svgCode += `userShape.render()`;
-    svgCode += `<text x='150' y='150' text-anchor='middle' font-size='60' fill='${userTextColor}'>${userText}</text>`;
+    // render text
+    svgCode += `<text x='150' y='115' text-anchor='middle' font-size='50' fill='${userTextColor}'>${userText}</text>`;
     svgCode += "</svg>";
-    console.log(svgCode);
 
-
-
+    // write SVG code to file, error handling
     fs.writeFile(fileName, svgCode, function(err) {
-        err ? console.log(err) : console.log("Woot! SVG was successfully generated!")
+        err ? console.log(err) : console.log("Woot! SVG was successfully generated in '/examples' folder!")
     });
 }
 
@@ -78,5 +88,5 @@ function init() {
     inquirer.prompt(questions).then(data => writeToFile(data));
 }
 
-// Function call to initialize app
+// function call to initialize app
 init();
