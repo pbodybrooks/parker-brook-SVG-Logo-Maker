@@ -44,7 +44,7 @@ const questions = [
 function writeToFile(data) {
     const fileName = "./examples/logo.svg"
     let svgCode = "";
-    svgCode = `<svg version='1.1' xmlns='http://www.w3.org/2000/svg' width='300' height='200'>`;
+    svgCode = `<svg version='1.1' width='300' height='200' xmlns='http://www.w3.org/2000/svg'>`;
 
     userText = data.text;
     userShapeColor = data.shapeColor;
@@ -58,12 +58,14 @@ function writeToFile(data) {
     } else if (data.shape === "Triangle") {
         userShape = new Triangle();
     }
-
+    
     userShape.setColor(userShapeColor);
 
-    svgCode += `${userShape}`;
-    svgCode += `<text x='150' y='130' text-anchor='middle' font-size='40' fill='${userTextColor}'>${userText}</text>`;
+    svgCode += `userShape.render()`;
+    svgCode += `<text x='150' y='150' text-anchor='middle' font-size='60' fill='${userTextColor}'>${userText}</text>`;
     svgCode += "</svg>";
+    console.log(svgCode);
+
 
 
     fs.writeFile(fileName, svgCode, function(err) {
