@@ -47,7 +47,7 @@ function writeToFile(data) {
     svgCode = "<svg version='1.1' xmlns='http://www.w3.org/2000/svg' width='300' height='200'>";
 
     let userShape;
-    
+
     if (data.shape === "Circle") {
         userShape = new Circle();
     } else if (data.shape === "Square") {
@@ -56,14 +56,14 @@ function writeToFile(data) {
         userShape = new Triangle();
     }
 
-    fs.writeFile(fileName, generateSVG(data), function(err) {
-        err ? console.log(err) : console.log("Woot! " + fileName + " Successfully Generated!")
+    fs.writeFile(fileName, svgCode, function(err) {
+        err ? console.log(err) : console.log("Woot! SVG was successfully generated!")
     });
 }
 
 // initializes the prompting of questions
 function init() {
-    inquirer.prompt(questions).then(data => writeToSVG(data))
+    inquirer.prompt(questions).then(data => writeToFile(data));
 }
 
 // Function call to initialize app
