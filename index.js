@@ -6,7 +6,7 @@ const {Circle, Square, upTriangle, downTriangle} = require("./lib/shapes");
 // possible user inputs for shape selection
 const shapeSelection = ["Circle", "Square", "Upwards Triangle", "Downwards Triangle"];
 
-// check to ensure field is not left blank
+// check to ensure input is not left blank
 function validateUserInput(input){
     if (input != "") {
         return true;
